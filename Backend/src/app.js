@@ -22,7 +22,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/chat", chatRoutes);
 
 
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
     res.send("Api is running")
 })
 
