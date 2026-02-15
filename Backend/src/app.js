@@ -22,4 +22,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/chat", chatRoutes);
 
 
+app.use("/", (req, res) => {
+    res.send("Api is running")
+})
+
 module.exports = app;
