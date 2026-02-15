@@ -169,7 +169,7 @@ const handleLogout = async () => {
       dispatch(setChats([]));
     });
 
-    const tempSocket = io("http://localhost:3000", {
+    const tempSocket = io("/", {
       withCredentials: true,
     });
 

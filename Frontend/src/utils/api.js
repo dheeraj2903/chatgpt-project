@@ -2,7 +2,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const api = axios.create({
-  baseURL: "https://chatgpt-project-duvl.onrender.com",
+  baseURL: "/",
   withCredentials: true,
 });
 

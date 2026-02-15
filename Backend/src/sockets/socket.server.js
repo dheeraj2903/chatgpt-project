@@ -10,7 +10,10 @@ const { embedText } = require("../service/embedding.service");
 function initSocketServer(httpServer) {
   const io = new Server(httpServer, {
     cors: {
-      origin: "http://localhost:5173",
+      origin: ["http://localhost:5173",
+
+      "https://chatgpt-project-duvl.onrender.com"],
+      
       allowedHeaders: ["Content-Type", "Authorization"],
       credentials: true
     }

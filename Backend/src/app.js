@@ -12,7 +12,9 @@ const app = express()
 //Using Middlewares
 
 app.use(cors({
-    origin:'http://localhost:5173',
+    origin:["http://localhost:5173",
+
+      "https://chatgpt-project-duvl.onrender.com"],
     credentials: true
 }));
 app.use(express.json());
