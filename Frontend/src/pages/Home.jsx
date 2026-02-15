@@ -131,45 +131,42 @@ const Home = () => {
     }
   };
 
-const handleLogout = async () => {
-  try {
-    await api.post("/api/auth/logout");
+  const handleLogout = async () => {
+    try {
+      await api.post("/api/auth/logout");
 
-    localStorage.removeItem("wasLoggedIn");
+      localStorage.removeItem("wasLoggedIn");
 
-    setUser(null);              // ✅ instant UI update
-    dispatch(setChats([]));
-    setMessages([]);
+      setUser(null); // ✅ instant UI update
+      dispatch(setChats([]));
+      setMessages([]);
 
-    toast.success("Logged out successfully 👋");
+      toast.success("Logged out successfully 👋");
 
-    navigate("/");              // ✅ no reload
-  } catch {
-    toast.error("Logout failed");
-  }
-};
-
-
-
+      navigate("/"); // ✅ no reload
+    } catch {
+      toast.error("Logout failed");
+    }
+  };
 
   useEffect(() => {
- api
-    .get("/api/auth/me", { withCredentials: true })
-    .then((res) => {
-      setUser(res.data.user);
+    api
+      .get("/api/auth/me", { withCredentials: true })
+      .then((res) => {
+        setUser(res.data.user);
 
-      // ✅ CHAT FETCH HERE
-      return api.get("/api/chat", { withCredentials: true });
-    })
-    .then((chatRes) => {
-      dispatch(setChats(chatRes.data.chats.reverse()));
-    })
-    .catch(() => {
-      setUser(null);
-      dispatch(setChats([]));
-    });
+        // ✅ CHAT FETCH HERE
+        return api.get("/api/chat", { withCredentials: true });
+      })
+      .then((chatRes) => {
+        dispatch(setChats(chatRes.data.chats.reverse()));
+      })
+      .catch(() => {
+        setUser(null);
+        dispatch(setChats([]));
+      });
 
-    const tempSocket = io("/", {
+    const tempSocket = io(import.meta.env.VITE_API_URL || "/", {
       withCredentials: true,
     });
 
