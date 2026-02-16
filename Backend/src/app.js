@@ -14,7 +14,7 @@ const app = express()
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:3000",
-  "https://chatgpt-project-dvul.onrender.com"
+  "https://chatgpt-project-duvl.onrender.com"
 ];
 
 app.use(cors({
