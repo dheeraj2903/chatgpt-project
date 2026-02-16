@@ -72,6 +72,7 @@ function initSocketServer(httpServer) {
             metadata: {
               chat: messagePayload.chat,
               user: socket.user._id,
+              text: messagePayload.content
             },
           })
 
@@ -140,7 +141,7 @@ function initSocketServer(httpServer) {
           role: "assistant",
         }),
 
-        embedText(response)
+        embedText(response || "")
 
         ])
 

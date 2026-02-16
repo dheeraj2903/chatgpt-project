@@ -151,12 +151,12 @@ const Home = () => {
 
   useEffect(() => {
     api
-      .get("/api/auth/me", { withCredentials: true })
+      .get("/api/auth/me")
       .then((res) => {
         setUser(res.data.user);
+        localStorage.setItem("wasLoggedIn", "true");
 
-        // ✅ CHAT FETCH HERE
-        return api.get("/api/chat", { withCredentials: true });
+        return api.get("/api/chat");
       })
       .then((chatRes) => {
         dispatch(setChats(chatRes.data.chats.reverse()));
@@ -164,9 +164,10 @@ const Home = () => {
       .catch(() => {
         setUser(null);
         dispatch(setChats([]));
+        localStorage.removeItem("wasLoggedIn");
       });
 
-    const tempSocket = io(import.meta.env.VITE_API_URL || "/", {
+      const tempSocket = io(import.meta.env.VITE_API_URL || "/", {
       withCredentials: true,
     });
 
@@ -190,7 +191,7 @@ const Home = () => {
   const sendMessage = async () => {
     const trimmed = input.trim();
     console.log("Sending message:", trimmed);
-    if (!trimmed || !activeChatId || isSending) return;
+    if (!trimmed || !activeChatId || isSending || !socket) return;
     dispatch(sendingStarted());
 
     const newMessages = [

@@ -31,6 +31,8 @@ async function registerUser(req, res) {
         secure: false,
     })
 
+    
+
     res.status(201).json({
         message: "User registered successfully",
         user:{
@@ -65,11 +67,19 @@ async function loginUser(req, res) {
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {expiresIn: '1d'});
 
+    // res.cookie("token", token, {
+    //     httpOnly: true,
+    //     sameSite: "none",
+    //     secure: true
+    // });
+
+    const isProduction = process.env.NODE_ENV === "production";
+
     res.cookie("token", token, {
         httpOnly: true,
-        sameSite: "none",
-        secure: true
-    });
+        sameSite: isProduction ? "None" : "Lax",
+        secure: isProduction
+    })
 
     res.status(200).json({
         message: "User logged in successfully",

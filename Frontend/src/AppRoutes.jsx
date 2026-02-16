@@ -10,7 +10,7 @@ import api from "./utils/api";
 
 const AppRoutes = () => {
   const [user, setUser] = useState(undefined); 
-  // undefined = अभी checking session
+  // undefined = checking session
   // null = guest
   // object = logged in
 
@@ -21,7 +21,7 @@ const AppRoutes = () => {
       .catch(() => setUser(null));
   }, []);
 
-  // 🔥 Loader while checking session
+  // Loader while checking session
   if (user === undefined) {
     return <div style={{ padding: 20 }}>Checking session...</div>;
   }
@@ -29,10 +29,10 @@ const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* ✅ Home हमेशा accessible */}
+        {/* Home always accessible */}
         <Route path="/" element={<Home />} />
 
-        {/* ✅ Guest only pages */}
+        {/* Guest only pages */}
         <Route
           path="/login"
           element={

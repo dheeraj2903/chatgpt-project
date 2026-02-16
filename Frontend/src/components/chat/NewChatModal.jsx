@@ -6,35 +6,47 @@ const NewChatModal = ({ isOpen, onClose, onCreate }) => {
 
   if (!isOpen) return null;
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!title.trim()) return;
+
+    onCreate(title.trim());
+    setTitle("");
+  };
+
   return (
     <div className="modal-overlay">
       <div className="modal-box">
         <h3>New Chat</h3>
 
-        <input
-          type="text"
-          placeholder="Enter chat title..."
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          autoFocus
-        />
+        {/* ✅ FORM WRAPPER */}
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Enter chat title..."
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            autoFocus
+          />
 
-        <div className="modal-actions">
-          <button onClick={onClose} className="cancel-btn">
-            Cancel
-          </button>
+          <div className="modal-actions">
+            <button
+              type="button"   /* ✅ Prevent submit */
+              onClick={onClose}
+              className="cancel-btn"
+            >
+              Cancel
+            </button>
 
-          <button
-            onClick={() => {
-              if (!title.trim()) return;
-              onCreate(title.trim());
-              setTitle("");
-            }}
-            className="create-btn"
-          >
-            Create
-          </button>
-        </div>
+            <button
+              type="submit"   /* ✅ Enter triggers this */
+              className="create-btn"
+            >
+              Create
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
