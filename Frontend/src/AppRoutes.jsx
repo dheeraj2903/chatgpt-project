@@ -9,16 +9,28 @@ import GuestWrapper from "./components/chat/GuestWrapper";
 import api from "./utils/api";
 
 const AppRoutes = () => {
-  const [user, setUser] = useState(undefined); 
+  const [user, setUser] = useState(undefined);
   // undefined = checking session
   // null = guest
   // object = logged in
 
   useEffect(() => {
+    const wasLoggedIn = localStorage.getItem("wasLoggedIn");
+
+    if (!wasLoggedIn) {
+      setUser(null);
+      return;
+    }
+
     api
       .get("/api/auth/me", { withCredentials: true })
-      .then((res) => setUser(res.data.user))
-      .catch(() => setUser(null));
+      .then((res) => {
+        setUser(res.data.user);
+      })
+      .catch(() => {
+        setUser(null);
+        localStorage.removeItem("wasLoggedIn");
+      });
   }, []);
 
   // Loader while checking session

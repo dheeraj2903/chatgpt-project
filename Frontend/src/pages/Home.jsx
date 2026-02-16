@@ -150,24 +150,28 @@ const Home = () => {
   };
 
   useEffect(() => {
-    api
-      .get("/api/auth/me")
-      .then((res) => {
-        setUser(res.data.user);
-        localStorage.setItem("wasLoggedIn", "true");
+    const wasLoggedIn = localStorage.getItem("wasLoggedIn");
 
-        return api.get("/api/chat");
-      })
-      .then((chatRes) => {
-        dispatch(setChats(chatRes.data.chats.reverse()));
-      })
-      .catch(() => {
-        setUser(null);
-        dispatch(setChats([]));
-        localStorage.removeItem("wasLoggedIn");
-      });
+    if (wasLoggedIn) {
+      api
+        .get("/api/auth/me")
+        .then((res) => {
+          setUser(res.data.user);
+          localStorage.setItem("wasLoggedIn", "true");
 
-      const tempSocket = io(import.meta.env.VITE_API_URL || "/", {
+          return api.get("/api/chat");
+        })
+        .then((chatRes) => {
+          dispatch(setChats(chatRes.data.chats.reverse()));
+        })
+        .catch(() => {
+          setUser(null);
+          dispatch(setChats([]));
+          localStorage.removeItem("wasLoggedIn");
+        });
+    }
+
+    const tempSocket = io(import.meta.env.VITE_API_URL || "/", {
       withCredentials: true,
     });
 
