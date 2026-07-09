@@ -1,0 +1,59 @@
+/* ChatMobileBar.css */
+.chat-mobile-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: env(safe-area-inset-top, 0) 16px 0 16px;
+    border-bottom: 1px solid #18181a;
+    background: rgba(9, 9, 10, 0.8);
+    backdrop-filter: saturate(180%) blur(12px);
+    z-index: 30;
+    box-sizing: border-box;
+}
+
+.chat-app-title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    flex: 1;
+    text-align: center;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+}
+
+.chat-icon-btn {
+    background: #18181a;
+    border: 1px solid #27272a;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #a1a1aa;
+    transition: all 0.15s ease;
+}
+
+.chat-icon-btn:hover {
+    background: #27272a;
+    color: #ffffff;
+    border-color: #3f3f46;
+}
+
+@media (max-width: 480px) {
+    .chat-mobile-bar {
+        padding: env(safe-area-inset-top, 0) 12px 0 12px;
+    }
+}
+
+@media (min-width: 960px) {
+    .chat-mobile-bar {
+        display: none;
+    }
+}

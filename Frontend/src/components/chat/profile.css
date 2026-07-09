@@ -1,0 +1,111 @@
+/* Bottom placement inside sidebar */
+.profile-menu {
+  margin-top: auto;                 /* pushes to bottom */
+  padding: 14px 12px;               /* slightly tighter */
+  padding-bottom: 1.4rem;           /* less खाली space */
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface);
+
+  display: flex;
+  justify-content: flex-start;      /* left aligned like ChatGPT */
+}
+
+/* Container */
+.profile-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Trigger Button */
+.profile-trigger {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text);
+
+  padding: 6px 10px;
+  border-radius: 10px;
+
+  transition: background 0.2s ease;
+}
+
+.profile-trigger:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+
+
+/* Dropdown */
+.profile-dropdown {
+  position: absolute;
+  bottom: 60px;                     /* थोड़ा breathing space */
+  left: 10px;                       /* aligns with avatar */
+
+  background: #1b1b1b;
+  border: 1px solid #2a2a2a;
+  border-radius: 14px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+
+  width: 200px;                     /* थोड़ा wider */
+  padding: 12px;
+  z-index: 200;
+
+  animation: fadeIn 0.15s ease;
+}
+
+/* Name */
+.profile-name {
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 6px 8px 10px;
+  border-bottom: 1px solid #2a2a2a;
+  margin-bottom: 10px;
+  color: #ddd;
+}
+
+/* Logout */
+.logout-btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+
+  background: #111;
+  color: #ff6b6b;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  display: flex;              /* ✅ KEY FIX */
+  align-items: center;        /* vertical align */
+  justify-content: center;    /* center content */
+  gap: 8px;
+}
+
+.logout-btn:hover {
+  background: #1f1f1f;
+  transform: translateY(-1px);
+}
+
+.logout-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

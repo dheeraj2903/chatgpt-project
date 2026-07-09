@@ -1,0 +1,211 @@
+@import url('./styles/theme.css');
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+  color-scheme: light dark;
+}
+
+/* Links */
+a {
+  color: #c4b5fd;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: #a5b4fc;
+  text-decoration: none;
+}
+
+/* ===== Layout ===== */
+.center-min-h-screen {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6) var(--space-4);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Premium Auth Background with ambient glow */
+.auth-page-bg {
+  background:
+    radial-gradient(circle at 10% 10%, rgba(139, 92, 246, 0.15), transparent 45%),
+    radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.12), transparent 50%),
+    linear-gradient(145deg, #09090b 0%, #020204 100%);
+}
+
+/* ===== Card ===== */
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 20px;
+  padding: clamp(24px, 5vw, 40px);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  z-index: 2;
+}
+
+/* Premium glass card with dual-border effect */
+.premium-card {
+  background: linear-gradient(
+    145deg,
+    rgba(15, 15, 20, 0.7) 0%,
+    rgba(10, 10, 12, 0.85) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 4px 30px rgba(0, 0, 0, 0.4),
+    0 24px 70px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* ===== Header ===== */
+.auth-header {
+  text-align: center;
+}
+
+.auth-header h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Gradient Heading */
+.gradient-text {
+  background: linear-gradient(135deg, #ffffff 40%, #c4b5fd 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Subtitle */
+.auth-sub {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: #71717a;
+  font-weight: 400;
+}
+
+/* ===== Form ===== */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field-group label {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #a1a1aa;
+  transition: color 0.2s ease;
+}
+
+/* Highlight label on input focus */
+.field-group:focus-within label {
+  color: #ffffff;
+}
+
+/* Inputs */
+.auth-form input {
+  height: 46px;
+  padding: 0 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  color: #f4f4f5;
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.auth-form input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.auth-form input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(165, 180, 252, 0.6);
+  box-shadow: 
+    0 0 0 1px rgba(165, 180, 252, 0.3),
+    0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* ===== Button ===== */
+button.primary-btn {
+  appearance: none;
+  cursor: pointer;
+  border-radius: 10px;
+  font-family: inherit;
+  font-weight: 600;
+  padding: 12px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Premium gradient button */
+.premium-btn {
+  width: 100%;
+  margin-top: 8px;
+  background: linear-gradient(180deg, #ffffff 0%, #e4e4e7 100%);
+  color: #09090b;
+  border: none;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+}
+
+.premium-btn:hover {
+  background: #ffffff;
+  transform: translateY(-1.5px);
+  box-shadow: 
+    0 4px 20px rgba(165, 180, 252, 0.3),
+    0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+.premium-btn:active {
+  transform: translateY(0);
+}
+
+/* ===== Footer ===== */
+.auth-alt {
+  text-align: center;
+  font-size: 13.5px;
+  color: #71717a;
+  margin-top: 4px;
+}
+
+.auth-alt a {
+  font-weight: 600;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 380px) {
+  .auth-card {
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+}
