@@ -9,8 +9,11 @@ import { createMemory, queryMemory } from "../services/vector.service.js";
 const initSocketServer = (httpServer) => {
   const io = new Server(httpServer, {
     cors: {
-      origin: "http://localhost:5173", // frontend ka URL yaha
-      methods: ["GET", "POST"],
+      origin: ["http://localhost:5173", 
+        "https://chatgpt-project-duvl.onrender.com"
+      ],
+      allowedHeaders: ["Content-Type", "Authorization"],
+      // methods: ["GET", "POST"],
       credentials: true,
     },
   });

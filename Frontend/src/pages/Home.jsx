@@ -40,13 +40,12 @@ const Home = () => {
 
   const navigate = useNavigate();
 
-  // 👉 NAYA JUGAD: Header ya Chats click par sab clean karke Home view par lane ke liye
   const handleResetHome = () => {
-    dispatch(selectChat(null)); // Active Chat Id ko null karega jisse input gayab ho jayega
-    setMessages([]); // Messages saaf karega taaki welcome screen dikhe
-    setSidebarOpen(false); // Mobile pe sidebar close ho jayega
+    dispatch(selectChat(null));
+    setMessages([]);
+    setSidebarOpen(false);
   };
-console.count("HOME RENDER");
+
   const handleNewChat = () => {
     if (!user) {
       setShowModal(true);
@@ -84,7 +83,7 @@ console.count("HOME RENDER");
       dispatch(setChats(chats.filter((c) => c._id !== deleteChatId)));
 
       if (deleteChatId === activeChatId) {
-        dispatch(selectChat(null)); // FIX: Delete active chat, clear ID too
+        dispatch(selectChat(null));
         setMessages([]);
       }
 
@@ -102,10 +101,9 @@ console.count("HOME RENDER");
 
       localStorage.removeItem("wasLoggedIn");
 
-      // 👉 FIX: Logout par poori state jadd se saaf karo
       setUser(null);
       dispatch(setChats([]));
-      dispatch(selectChat(null)); // Isse activeChatId null ho jayega aur chat box automatic hide ho jayega!
+      dispatch(selectChat(null)); 
       setMessages([]);
 
       toast.success("Logged out successfully");
@@ -216,7 +214,7 @@ console.count("HOME RENDER");
         open={sidebarOpen}
         user={user}
         handleLogout={handleLogout}
-        onLogoClick={handleResetHome} // 👉 SIDEBAR KO PROP PASS KIYA HAI
+        onLogoClick={handleResetHome}
       />
 
       <ConfirmDeleteModal
@@ -226,7 +224,6 @@ console.count("HOME RENDER");
       />
 
       <main className="chat-main" role="main">
-        {/* FIX: welcome screen tabhi dikhegi jab koi active chat na ho aur messages empty ho */}
         {(!activeChatId || messages.length === 0) && (
           <div className="chat-welcome" aria-hidden="true">
             <div className="chip">Early Preview</div>
