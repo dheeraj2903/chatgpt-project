@@ -45,8 +45,8 @@ app.use(express.static(path.join(__dirname, '../public')))
 app.use('/api/auth', authRoute)
 app.use('/api/chat', chatRoutes)
 
-app.get("*(any)", (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/index.html"))
-})
+app.get("/:catchAll(*)", (req, res) => {
+    res.sendFile(path.join(__dirname, "../public/index.html"));
+});
 
 export default app;
